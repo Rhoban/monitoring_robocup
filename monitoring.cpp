@@ -20,6 +20,8 @@
 #include "RichText.hpp"
 #include "log.h"
 
+#undef USE_CAMERA
+
 #ifdef USE_CAMERA
 #include <opencv2/opencv.hpp>
 
@@ -67,12 +69,12 @@ void drawLine(sf::RenderWindow& window, const sf::Vector2f& p1, const sf::Vector
  */
 void drawField(sf::RenderWindow& window)
 {
-  double fieldWidth = robocup_referee::Constants::field.fieldLength;
-  double fieldHeight = robocup_referee::Constants::field.fieldWidth;
-  double goalWidth = robocup_referee::Constants::field.goalWidth;
-  double goalDepth = robocup_referee::Constants::field.goalDepth;
-  double goalAreaDepth = robocup_referee::Constants::field.goalAreaLength;
-  double goalAreaWidth = robocup_referee::Constants::field.goalAreaWidth;
+  double fieldWidth = robocup_referee::Constants::field.field_length;
+  double fieldHeight = robocup_referee::Constants::field.field_width;
+  double goalWidth = robocup_referee::Constants::field.goal_width;
+  double goalDepth = robocup_referee::Constants::field.goal_depth;
+  double goalAreaDepth = robocup_referee::Constants::field.goal_area_length;
+  double goalAreaWidth = robocup_referee::Constants::field.goal_area_width;
 
   drawLine(window, sf::Vector2f(-fieldWidth / 2, -fieldHeight / 2), sf::Vector2f(fieldWidth / 2, -fieldHeight / 2));
   drawLine(window, sf::Vector2f(-fieldWidth / 2, fieldHeight / 2), sf::Vector2f(fieldWidth / 2, fieldHeight / 2));
@@ -849,9 +851,9 @@ int main(int argc, char** argv)
       }
       if (info.isPenalized() || age > 5.0)
       {
-        double x = isInverted * (-robocup_referee::Constants::field.fieldLength / 2);
+        double x = isInverted * (-robocup_referee::Constants::field.field_length / 2);
         x += isInverted * 0.45 * (info.id - 1);
-        double y = isInverted * (-robocup_referee::Constants::field.fieldWidth / 2 - 0.3);
+        double y = isInverted * (-robocup_referee::Constants::field.field_width / 2 - 0.3);
         drawPlayer(window, sf::Vector2f(x, y), isInverted * 90.0, id);
       }
       else
